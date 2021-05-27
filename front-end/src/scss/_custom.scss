@@ -1,0 +1,111 @@
+
+header.header {
+  background-color: gray;
+  border-top: 5px solid lightgray;
+  color: white;
+  padding: 20px 40px 20px;
+  margin: -10px -27px 20px;
+
+  .row {
+      margin-left: 0px !important;
+  }
+  &.breadcrumb-space {
+    .v-btn {
+      box-shadow: none !important;
+      &:active {top: 0px !important;}
+    }
+  }
+
+  h1 {
+    font-size: 30px;
+    line-height: 30px;
+    font-weight: 400;
+  }
+
+  .breadcrumb-list {
+    margin: 0;
+  }
+
+  .breadcrumb-item {
+    margin-left: 20px;
+    font-size: 15px;
+
+    &:after {
+      opacity: 1;
+      font-family: 'FontAwesome';
+      content: "\f105";
+      position: absolute;
+      font-size: 24px;
+      vertical-align: middle;
+      margin: -7px 5px 5px 7px;
+    }
+
+    &:first-child {
+      margin-left: 0;
+
+      &:before {
+        content: "";
+      }
+    }
+
+    &:last-child::after {
+      content: "";
+    }
+  }
+  .actived {
+      text-decoration: underline;
+  }
+
+  .layout {
+    button.v-btn {
+      border: 3px solid lightblue;
+      background-color: blue !important;
+      box-shadow: none;
+      top: 0;
+      height: unset;
+      color: white;
+      border-radius: 50px !important; 
+      padding: 1px 5px 0 5px;
+
+      .v-btn__content {
+        font-size: 15px;
+      }
+
+      i {
+        margin: -1px 10px 0 0;
+        font-size: 16px;
+      }
+    }
+  }
+  
+  @media(max-width: 600px) {
+    &.breadcrumb-space {
+      padding: 70px 30px 30px;
+      .v-btn {
+        &:active {top: 140px !important;}
+      }
+    }
+
+    .layout {
+      button.v-btn {
+        font-size: 12px; height: 26px; position: absolute; top: 140px;
+        i {margin: 0 8px 0 0; font-size: 12px;}
+      }
+    }
+  }
+}
+.container-login {
+  padding: 0px !important;
+}
+
+  
+.btn-login {
+  margin: auto;
+  color: gray;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.btn-login:hover { 
+  color: grayscale($color: #000010);
+}
