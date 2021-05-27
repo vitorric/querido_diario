@@ -1,5 +1,5 @@
 const { resJsonP } = require('../../../utils'),
-  { loginUser } = require('../../../services/api/user');
+  { loginUser } = require('../../../services/user');
 
 module.exports = () => (req, res) => {
   loginUser({ ...req.body})

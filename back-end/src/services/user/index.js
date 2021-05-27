@@ -1,12 +1,10 @@
-const { getUserByEmail, createUser } = require('../../../repositories/user'),
-  { createToken } = require('../../passport/create'),
-  { encrypt } = require('../../../utils');
+const { getUserByEmail, createUser } = require('../../repositories/user'),
+  { createToken } = require('../../middleware/passport/create'),
+  { encrypt } = require('../../utils');
 
-exports.userSignUp = async ({ name, email, password, whatsapp }) => {
+exports.userSignUp = async ({ name, email, password }) => {
 
-  if (!name ||
-      !email ||
-      !password) {
+  if (!name || !email || !password) {
     throw { msg: 'Informações faltantes' };
   }
 
@@ -17,7 +15,7 @@ exports.userSignUp = async ({ name, email, password, whatsapp }) => {
   }
 
   const encryptedPassword = encrypt(password);
-  user = await createUser({ name, email, password: encryptedPassword, role: 'user', whatsapp });
+  user = await createUser({ name, email, password: encryptedPassword, role: 'user' });
 
   if (user) {
     const token = createToken({ _id: user._id });

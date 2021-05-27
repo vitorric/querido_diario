@@ -20,7 +20,7 @@ app.all('*', (req, res, next) => {
 /**
  * @description inicia o modulo de passaport jwt
  */
-require('./src/services/passport')();
+require('./src/middleware/passport')();
 
 app.use(
   morgan('dev')

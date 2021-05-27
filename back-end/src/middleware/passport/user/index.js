@@ -6,7 +6,7 @@ module.exports = () => {
     { getUserById, getUserByEmail } = require('../../../repositories/user'),
     { encrypt } = require('../../../utils');
 
-  passport.use('userAdminAuth', new JwtStrategy({
+  passport.use('userAuth', new JwtStrategy({
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
     secretOrKey: process.env.JWT_SECRET
   }, async(payload,done) => {
@@ -32,7 +32,7 @@ module.exports = () => {
     }
   }));
 
-  passport.use('userAdmin', new LocalStrategy({
+  passport.use('user', new LocalStrategy({
     usernameField: 'email'
   }, async (email, password, done) => {
 

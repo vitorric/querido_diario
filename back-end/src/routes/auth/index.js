@@ -7,8 +7,5 @@ module.exports = () => {
 
   router.post('/login', require('./login')());
 
-  // Exemplo uso pass
-  // router.post('/service/metodo', passportUserAdmin, require('./service/metodo')());
-
   return router;
 };
