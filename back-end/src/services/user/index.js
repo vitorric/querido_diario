@@ -1,6 +1,6 @@
 const { getUserByEmail, createUser } = require('../../repositories/user'),
   { createToken } = require('../../middleware/passport/create'),
-  { encrypt } = require('../../utils');
+  { getMD5 } = require('../../utils');
 
 exports.userSignUp = async ({ name, email, password }) => {
 
@@ -14,7 +14,7 @@ exports.userSignUp = async ({ name, email, password }) => {
     throw { msg: 'Usuário já cadastrado' };
   }
 
-  const encryptedPassword = encrypt(password);
+  const encryptedPassword = getMD5(password);
   user = await createUser({ name, email, password: encryptedPassword, role: 'user' });
 
   if (user) {

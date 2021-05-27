@@ -11,19 +11,15 @@ app.all('*', (req, res, next) => {
   res.header('Access-Control-Allow-Methods', 'PUT, GET, POST');
   res.header('Access-Control-Allow-Headers', 'Content-Type');
   res.header('Access-Control-Allow-Headers', 'Content-type, Accept, Authorization');
-
-  console.log('IP: ', req.connection.remoteAddress);
-
   next();
 });
 
-/**
- * @description inicia o modulo de passaport jwt
- */
 require('./src/middleware/passport')();
 
 app.use(
-  morgan('dev')
+  morgan('dev'),
+  express.json({ limit: '1000MB', extended: true }),
+  express.urlencoded({ limit: '2000MB', extended: true })
 );
 
 require('./src/routes')(app);

@@ -1,10 +1,12 @@
 {
-  "name": "projeto-nodejs",
+  "name": "back-end-querido-diario",
   "version": "1.0.0",
-  "description": "",
+  "description": "API do projeto Querido Diário, desenvolvida em NodeJS e MongoDB.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "gen-doc": "apidoc -i src/ -o apidoc/",
+    "test": "NODE_ENV=test mocha ./test/index.js  --timeout 50000 --exit",
+    "test-cover": "nyc --reporter=html --reporter=text NODE_ENV=test mocha ./test/index.js --reporter mochawesome --reporter-options ,reportFilename=index.html --timeout 50000 --exit",
     "local": "NODE_ENV=local nodemon"
   },
   "author": "Vitor Ricardo",
@@ -19,6 +21,13 @@
     "passport-local": "^1.0.0"
   },
   "devDependencies": {
-    "eslint": "^7.1.0"
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
+    "docdash": "^1.2.0",
+    "eslint": "^7.1.0",
+    "mocha": "^8.4.0",
+    "mochawesome": "^6.2.2",
+    "nyc": "^15.1.0",
+    "supertest": "^6.1.3"
   }
 }

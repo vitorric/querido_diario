@@ -1,5 +1,3 @@
-const passport = require('passport');
-
 /**
  * Padrão de rotas = token/service/metodo
  */
