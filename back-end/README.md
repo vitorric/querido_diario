@@ -2,8 +2,6 @@
 
 API do Restaurante Lista desenvolvida em NodeJS juntamente com o MongoDB.
 
-  
-
 # Estrutura da API
 
 - O fluxo da API é: rota -> serviço -> repositório -> model
