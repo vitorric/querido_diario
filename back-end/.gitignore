@@ -6,3 +6,4 @@ package-lock.js
 .nyc_output
 coverage
 mochawesome-report
+apidoc
