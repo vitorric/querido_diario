@@ -22,8 +22,8 @@ module.exports = async (expect, request, app) => {
           .expect(200)
           .end((err, res) => {
             if (err) return done(err);
-            expect(res.body.sucesso).to.be.false;
-            expect(res.body.retorno).to.be.an('object')
+            expect(res.body.success).to.be.false;
+            expect(res.body.payload).to.be.an('object')
               .that.has.all.keys('msg');
             done();
           });
@@ -38,8 +38,8 @@ module.exports = async (expect, request, app) => {
           .expect(200)
           .end((err, res) => {
             if (err) return done(err);
-            expect(res.body.sucesso).to.be.false;
-            expect(res.body.retorno).to.be.an('object')
+            expect(res.body.success).to.be.false;
+            expect(res.body.payload).to.be.an('object')
               .that.has.all.keys('msg');
             done();
           });
@@ -54,8 +54,8 @@ module.exports = async (expect, request, app) => {
           .expect(200)
           .end((err, res) => {
             if (err) return done(err);
-            expect(res.body.sucesso).to.be.false;
-            expect(res.body.retorno).to.be.an('object')
+            expect(res.body.success).to.be.false;
+            expect(res.body.payload).to.be.an('object')
               .that.has.all.keys('msg');
             done();
           });
@@ -69,10 +69,10 @@ module.exports = async (expect, request, app) => {
           .expect(200)
           .end((err, res) => {
             if (err) return done(err);
-            expect(res.body.sucesso).to.be.true;
-            expect(res.body.retorno).to.be.an('object');
-            expect(res.body.retorno.token).to.be.an('string');
-            expect(res.body.retorno.user).to.be.an('object')
+            expect(res.body.success).to.be.true;
+            expect(res.body.payload).to.be.an('object');
+            expect(res.body.payload.token).to.be.an('string');
+            expect(res.body.payload.user).to.be.an('object')
               .that.has.all.keys('name', 'email', 'role');
             done();
           });
@@ -86,8 +86,8 @@ module.exports = async (expect, request, app) => {
           .expect(200)
           .end((err, res) => {
             if (err) return done(err);
-            expect(res.body.sucesso).to.be.false;
-            expect(res.body.retorno).to.be.an('object')
+            expect(res.body.success).to.be.false;
+            expect(res.body.payload).to.be.an('object')
               .that.has.all.keys('msg');
             done();
           });

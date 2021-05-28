@@ -1,4 +1,4 @@
-const { getUserByEmail, createUser } = require('../../repositories/user'),
+const { getUserByEmailRepository, createUserRepository } = require('../../repositories/user'),
   { createToken } = require('../../middleware/passport/create'),
   { getMD5 } = require('../../utils');
 
@@ -8,14 +8,14 @@ exports.userSignUp = async ({ name, email, password }) => {
     throw { msg: 'Informações faltantes' };
   }
 
-  let user = await getUserByEmail(email);
+  let user = await getUserByEmailRepository(email);
 
   if (user) {
     throw { msg: 'Usuário já cadastrado' };
   }
 
   const encryptedPassword = getMD5(password);
-  user = await createUser({ name, email, password: encryptedPassword, role: 'user' });
+  user = await createUserRepository({ name, email, password: encryptedPassword, role: 'user' });
 
   if (user) {
     const token = createToken({ _id: user._id });

@@ -14,15 +14,15 @@ const { resJsonP } = require('../../../utils'),
  * @apiParam {String} name Nome
  * @apiParam {String} password Senha
  * @apiParam {String} email Email
- * @apiSuccess {String} sucesso <code>Boolean</code>
- * @apiSuccess {Object} retorno objeto contendo os dados do usuário
- * @apiError {String} sucesso <code>false</code>
- * @apiError {String} retorno objeto contendo a msg de erro
+ * @apiSuccess {String} success <code>Boolean</code>
+ * @apiSuccess {Object} payload objeto contendo os dados do usuário
+ * @apiError {String} success <code>false</code>
+ * @apiError {String} payload objeto contendo a msg de erro
  * @apiSuccessExample {json} Success-Response:
  *      HTTP/1.1 200 OK
  *      {
- *        "sucesso": true,
- *         "retorno": {
+ *        "success": true,
+ *         "payload": {
  *             "user": {
  *                 "nome": "Vitor Ricardo",
  *                 "email": "vitorricardo@outlook.com"
@@ -33,8 +33,8 @@ const { resJsonP } = require('../../../utils'),
  * @apiErrorExample {json} Requisição inválida:
  *     HTTP/1.1 401 OK
  *     {
- *        "sucesso": false,
- *        "retorno": {
+ *        "success": false,
+ *        "payload": {
  *            "msg": "Informações faltantes"
  *        }
  *     }

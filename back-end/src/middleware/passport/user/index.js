@@ -3,7 +3,7 @@ module.exports = () => {
     JwtStrategy = require('passport-jwt').Strategy,
     LocalStrategy = require('passport-local').Strategy,
     ExtractJwt = require('passport-jwt').ExtractJwt,
-    { getUserById, getUserByEmail } = require('../../../repositories/user');
+    { getUserByIdRepository, getUserByEmailRepository } = require('../../../repositories/user');
 
   passport.use('userAuth', new JwtStrategy({
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -14,13 +14,13 @@ module.exports = () => {
       if (!payload.auth)
         return done(null, false);
 
-      const user = await getUserById(payload.auth._id);
+      const user = await getUserByIdRepository(payload.auth._id);
 
       if(!user){
         return done(null, false);
       }
 
-      if (user.role !== 'admin' || user.delete || !user.status) {
+      if (user.role !== 'user' || user.delete || !user.status) {
         return done(null, false);
       }
 
@@ -37,7 +37,7 @@ module.exports = () => {
 
     try{
       // get the user given the email
-      const user = await getUserByEmail(email);
+      const user = await getUserByEmailRepository(email);
 
       // If not, handle it
       if (!user){

@@ -1,26 +1,26 @@
 const { User } = require('../../schemas/user'),
   { ObjectIdCast } = require('../../utils');
 
-exports.createUser = async user => {
+exports.createUserRepository = async user => {
   try {
     return User.create(user);
   } catch (error) {
-    console.log('Error in createUser: ', error);
+    console.log('Error in createUserRepository: ', error);
   }
 };
 
-exports.getUserByEmail = email => {
+exports.getUserByEmailRepository = email => {
   try {
     return User.findOne({ email }).exec();
   } catch (error) {
-    console.log('Error in getUserByEmail', error);
+    console.log('Error in getUserByEmailRepository', error);
   }
 };
 
-exports.getUserById = _id => {
+exports.getUserByIdRepository = _id => {
   try {
     return User.findOne({ _id: ObjectIdCast(_id) }).exec();
   } catch (error) {
-    console.log('Error in getUserById', error);
+    console.log('Error in getUserByIdRepository', error);
   }
 };

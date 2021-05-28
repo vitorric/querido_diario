@@ -24,3 +24,11 @@ require('./utils')(expect);
 // -- Auth:
 require('./routes/auth/create')(expect, request, app);
 require('./routes/auth/login')(expect, request, app);
+
+// ## Routes
+// -- User - Daily:
+require('./routes/user/daily/create')(expect, request, app);
+require('./routes/user/daily/list')(expect, request, app);
+require('./routes/user/daily/get')(expect, request, app);
+require('./routes/user/daily/delete')(expect, request, app);
+require('./routes/user/daily/update')(expect, request, app);
