@@ -29,7 +29,7 @@ export default [
     component: Error404,
     beforeEnter: authenticated,
     meta: {
-      title: 'NomeSite | 404'
+      title: '404 | Querido Diário'
     }
   }
 ]

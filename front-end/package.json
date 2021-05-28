@@ -1,7 +1,8 @@
 {
-  "name": "template-vuejs",
+  "name": "front-end-querido-diario",
   "version": "0.1.0",
   "private": true,
+  "author": "Vitor Ricardo",
   "scripts": {
     "local": "vue-cli-service serve --mode=local",
     "production": "vue-cli-service build --mode=production"

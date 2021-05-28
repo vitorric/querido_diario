@@ -1,49 +1,31 @@
 import Vue from 'vue'
 
-Vue.filter('base64Header', (str, ext = 'png') => {
-  if (!str) {
-    return ''
-  }
-  let first = str.slice(0, 100)
+export const addZeros = (n, s = 2) => ('0' + n).slice(s * -1)
 
-  if (first.match(/(?=data:).*(base64,)/igm) || first.match(/^http/igm)) {
-    return str
+export const formatISODate = isoString => {
+  if (!isoString) {
+    return null
   }
 
-  if (ext.match(/(jpg|jpeg|png)/igm)) {
-    return `data:image/${ext};base64,${str}`
+  const local = new Date(isoString)
+  if (local instanceof Date && !isNaN(local)) {
+    return `${addZeros(local.getDate())}/${addZeros(local.getMonth() + 1)}/${local.getFullYear()}`
   }
 
-  if (ext.match(/(mov|mp4|avi|3gp)/igm)) {
-    return `data:video/${ext};base64,${str}`
-  }
-})
+  return 'Data incorreta'
+}
+Vue.filter('formatISODate', formatISODate)
 
-Vue.filter('currency', (value) => {
-  let val = (value/1).toFixed(2).replace('.', ',')
-  return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
-})
-
-Vue.filter('formatDataPost', (value) => {
-  const today = new Date()
-  const datePost = new Date(value)
-
-  const diff = new Date(today.getTime() - datePost.getTime());
-  const days = diff.getUTCDate() - 1
-  const horas = diff.getUTCHours()
-  const mins = diff.getUTCMinutes()
-
-  if (days > 1) {
-    return `${days} dias atrás`
+export const formatISOTime = isoString => {
+  if (!isoString) {
+    return null
   }
 
-  if (horas > 1) {
-    return `${horas} horas atrás`
+  const local = new Date(isoString)
+  if (local instanceof Date && !isNaN(local)) {
+    return `${addZeros(local.getHours())}:${addZeros(local.getMinutes())}`
   }
 
-  if (mins > 1) {
-    return `${mins} minutos atrás`
-  }
-
-  return 'Agora mesmo'
-})
+  return 'Data incorreta'
+}
+Vue.filter('formatISOTime', formatISOTime)

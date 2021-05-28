@@ -3,7 +3,8 @@ module.exports = () => {
     JwtStrategy = require('passport-jwt').Strategy,
     LocalStrategy = require('passport-local').Strategy,
     ExtractJwt = require('passport-jwt').ExtractJwt,
-    { getUserByIdRepository, getUserByEmailRepository } = require('../../../repositories/user');
+    { getUserByIdRepository, getUserByEmailRepository } = require('../../../repositories/user'),
+    { getMD5 } = require('../../../utils');
 
   passport.use('userAuth', new JwtStrategy({
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -45,7 +46,7 @@ module.exports = () => {
       }
 
       // Check if the password is corret
-      const isMatch = password === user.password;
+      const isMatch = getMD5(password) === user.password;
 
       // If not, handle it
       if (!isMatch){

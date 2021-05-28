@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import axios from 'axios'
-// import store from '@/store'
+import store from '@/store'
 
 // Full config:  https://github.com/axios/axios#request-config
-axios.defaults.baseURL = process.env.VUE_APP_API_URL ? `${process.env.VUE_APP_API_URL}/api` : 'http://localhost:3000/api'
+axios.defaults.baseURL = `${process.env.VUE_APP_API_URL}/api`
 axios.defaults.headers.post['Content-Type'] = 'application/json'
 
 let config = {
@@ -14,9 +14,9 @@ const _axios = axios.create(config)
 
 _axios.interceptors.request.use((config) => {
 
-  let token = "958ED35DA94FCFF0CABB9B09C128E0AEF30A54B9B7DBD3C6CE846FA57E04826F3578EFEAE6A68D47899503A7D4D774683ABB98FC8C945AF6FE453F6CF305C526"
-
-  config.headers.common['Authorization'] = `Bearer ${token}`
+  if (store.getters.getAuth) {
+    config.headers.common['Authorization'] = `Bearer ${store.getters.getAuth.token}`
+  }
 
   return config
 })

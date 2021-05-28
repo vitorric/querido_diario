@@ -50,7 +50,7 @@ const confirm = (text, title = 'Tem certeza?') => notify(
   {
     html: text,
     title,
-    type: 'question',
+    icon: 'question',
     showCancelButton: true,
     confirmButtonColor: '#02649c',
     cancelButtonColor: '#d33',

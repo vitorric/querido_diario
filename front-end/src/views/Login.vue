@@ -20,7 +20,7 @@
                 </v-toolbar-title>
               </v-toolbar>
               <v-card-text>
-                <v-text-field v-if="telaCadastro" v-model="name" label="Nome" placeholder="Nome" name="name"
+                <v-text-field v-if="newUser" v-model="name" label="Nome" placeholder="Nome" name="name"
                               prepend-icon="mdi-account" type="text" required
                               :rules="[v => !!v || 'Campo obrigatório' ]"
                 />
@@ -35,13 +35,13 @@
               </v-card-text>
               <v-card-actions>
                 <v-btn color="primary" class="btn-login" type="submit" :loading="isLoading">
-                  {{ telaCadastro ? 'Cadastrar' : 'Acessar' }}
+                  {{ newUser ? 'Cadastrar' : 'Acessar' }}
                 </v-btn>
               </v-card-actions>
-              <v-card-actions v-if="!telaCadastro">
+              <v-card-actions v-if="!newUser">
                 <span color="primary" class="btn-login" @click="novoCadastro()">Não sou cadastrado</span>
               </v-card-actions>
-              <v-card-actions v-if="telaCadastro">
+              <v-card-actions v-if="newUser">
                 <span color="primary" class="btn-login" @click="novoCadastro()">Voltar</span>
               </v-card-actions>
             </v-card>
@@ -64,10 +64,9 @@ export default {
     return {
       isLoading: false,
       name: '',
-      whatsapp: '',
       email: '',
       password: '',
-      telaCadastro: false,
+      newUser: false,
       error: null
     }
   },
@@ -78,12 +77,12 @@ export default {
       let email = this.email.trim()
       loginUser({email, password: getMD5(this.password)})
         .then(({data}) => {
-          if (data.sucesso) {
-            this.setAuth(data.retorno)
+          if (data.success) {
+            this.setAuth(data.payload)
             this.$router.go()
             return true
           }
-          if (!data.sucesso) {
+          if (!data.success) {
             Notify.error('Email e/ou senha inválidos')
             return true
           }
@@ -102,16 +101,16 @@ export default {
       this.isLoading = true
       let email = this.email.trim()
       let name = this.name.trim()
-      createUser({email, password: getMD5(this.password), name, hashtag: this.hashtag})
+      createUser({email, password: getMD5(this.password), name})
         .then(({data}) => {
-          if (data.sucesso) {
-            this.setAuth(data.retorno)
+          if (data.success) {
+            this.setAuth(data.payload)
             this.$router.go()
             this.isLoading = false
             return true
           }
-          if (!data.sucesso) {
-            Notify.error(data.retorno.msg)
+          if (!data.success) {
+            Notify.error(data.payload.msg)
             return true
           }
         }).catch(error => {
@@ -122,13 +121,13 @@ export default {
         })
     },
     novoCadastro() {
-      this.telaCadastro = !this.telaCadastro
+      this.newUser = !this.newUser
       this.name = ''
       this.email = ''
       this.password = ''
     },
     acessarSite () {
-      if (this.telaCadastro) {
+      if (this.newUser) {
         this.create()
         return
       }

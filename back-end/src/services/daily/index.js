@@ -23,7 +23,7 @@ exports.deleteDailyById = async ({ dailyId }) => {
     throw { msg: 'Dados inválidos' };
   }
 
-  deleteDailyByIdRepository(dailyId);
+  await deleteDailyByIdRepository(dailyId);
 
   return true;
 };

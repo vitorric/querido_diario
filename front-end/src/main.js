@@ -9,8 +9,6 @@ import '@/plugins/sweetalert'
 
 Vue.config.productionTip = false
 
-require('@/components')
-
 new Vue({
   vuetify,
   router,

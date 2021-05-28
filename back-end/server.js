@@ -8,7 +8,7 @@ dotenv.config({ path: path.resolve(`.env.${process.env.NODE_ENV}`) });
 
 app.all('*', (req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST');
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE');
   res.header('Access-Control-Allow-Headers', 'Content-Type');
   res.header('Access-Control-Allow-Headers', 'Content-type, Accept, Authorization');
   next();
