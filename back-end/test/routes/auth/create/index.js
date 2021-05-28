@@ -1,3 +1,5 @@
+const { getMD5 } = require('../../../../src/utils/index');
+
 module.exports = async (expect, request, app) => {
 
   describe('File /routes/auth/create.js', () => {
@@ -8,7 +10,7 @@ module.exports = async (expect, request, app) => {
       beforeEach(() => {
         user = {
           name: 'Vitor Ricardo',
-          password: '123456',
+          password: getMD5('123456'),
           email: 'vitorricardo@outlook.com'
         };
       });
