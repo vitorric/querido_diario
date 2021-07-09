@@ -9,7 +9,6 @@ let config = {
   MONGO_PWD: process.env.MONGO_PWD
 };
 
-//mongoose.Promise = Promise;
 let options = {
   keepAlive: 300000,
   connectTimeoutMS: 0,
@@ -21,7 +20,13 @@ let options = {
   useUnifiedTopology: true
 };
 
-const mongoUrl = `mongodb://${config.MONGO_USER}:${config.MONGO_PWD}@${config.MONGO_HOST}:${config.MONGO_PORT}/${config.MONGO_DB}?authSource=${config.MONGO_AUTH_SOURCE}&authMechanism=SCRAM-SHA-1`;
+let mongoUrl = null;
+
+if (process.env.NODE_ENV === 'production') {
+  mongoUrl = `mongodb://${config.MONGO_USER}:${config.MONGO_PWD}@${config.MONGO_HOST}:${config.MONGO_PORT}/${config.MONGO_DB}?authSource=${config.MONGO_AUTH_SOURCE}&authMechanism=SCRAM-SHA-1`;
+} else {
+  mongoUrl = `mongodb://${config.MONGO_HOST}:${config.MONGO_PORT}`;
+}
 
 const db = mongoose.createConnection(mongoUrl, options);
 
