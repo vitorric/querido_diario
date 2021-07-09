@@ -1,6 +1,6 @@
 # API MEU QUERIDO DIÁRIO
 
-API do Restaurante Lista desenvolvida em NodeJS juntamente com o MongoDB.
+API do Querido diário desenvolvida em NodeJS juntamente com o MongoDB.
 
 # Estrutura da API
 
